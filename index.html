@@ -54,10 +54,20 @@
         </form>
 
         <div class="admin-section">
-            <h3>Admin Actions</h3>
-            <button onclick="downloadExcel()" class="btn-download">Download Excel</button>
-            <button onclick="viewRegistrations()" class="btn-view">View Registrations</button>
-            <button onclick="removeLastEntry()" class="btn-remove">Remove Last Entry</button>
+            <h3 onclick="toggleAdminPanel()" class="admin-toggle">Admin Actions <span id="adminArrow">▼</span></h3>
+            <div id="adminPanel" class="admin-panel" style="display:none;">
+                <div id="adminAuth" class="admin-auth">
+                    <input type="password" id="adminPassword" placeholder="Enter admin password" class="admin-password-input">
+                    <button onclick="verifyAdmin()" class="btn-auth">Unlock</button>
+                    <p id="authError" class="auth-error" style="display:none;">Incorrect password. Try again.</p>
+                </div>
+                <div id="adminButtons" style="display:none;">
+                    <button onclick="downloadExcel()" class="btn-download">Download Excel</button>
+                    <button onclick="viewRegistrations()" class="btn-view">View Registrations</button>
+                    <button onclick="hideRegistrations()" class="btn-hide" id="hideBtn" style="display:none;">Hide Registrations</button>
+                    <button onclick="removeLastEntry()" class="btn-remove">Remove Last Entry</button>
+                </div>
+            </div>
         </div>
 
         <div id="registrationsList" class="registrations-list"></div>

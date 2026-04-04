@@ -117,6 +117,42 @@ function viewRegistrations() {
         `;
         listDiv.appendChild(item);
     });
+    
+    document.getElementById('hideBtn').style.display = 'inline-block';
+}
+
+function hideRegistrations() {
+    document.getElementById('registrationsList').innerHTML = '';
+    document.getElementById('hideBtn').style.display = 'none';
+}
+
+function toggleAdminPanel() {
+    const panel = document.getElementById('adminPanel');
+    const arrow = document.getElementById('adminArrow');
+    if (panel.style.display === 'none') {
+        panel.style.display = 'block';
+        arrow.textContent = '▲';
+    } else {
+        panel.style.display = 'none';
+        arrow.textContent = '▼';
+        // Reset auth state when closing
+        document.getElementById('adminAuth').style.display = 'block';
+        document.getElementById('adminButtons').style.display = 'none';
+        document.getElementById('adminPassword').value = '';
+        document.getElementById('authError').style.display = 'none';
+    }
+}
+
+function verifyAdmin() {
+    const password = document.getElementById('adminPassword').value;
+    if (password === 'aarog') {
+        document.getElementById('adminAuth').style.display = 'none';
+        document.getElementById('adminButtons').style.display = 'block';
+        document.getElementById('authError').style.display = 'none';
+    } else {
+        document.getElementById('authError').style.display = 'block';
+        document.getElementById('adminPassword').value = '';
+    }
 }
 
 function removeLastEntry() {
